@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.mryoda",
+      "sha256_cert_fingerprints": [
+        "92:33:BD:12:88:16:FC:B6:0F:58:7C:E9:85:D9:43:4B:D6:13:30:B6:51:35:8A:F7:12:75:B0:D5:82:4B:E2:94"
+      ]
+    }
+  }
+]
