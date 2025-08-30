@@ -44,7 +44,7 @@ app.get('/test/:id', (req, res) => {
 });
 
 
-app.get("/:type(test|package|panel)/:id", (req, res) => {
+app.get("/:type/:id", (req, res) => {
   const { type, id } = req.params;
   res.send(`
 <html>
