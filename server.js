@@ -44,6 +44,32 @@ app.get('/test/:id', (req, res) => {
 });
 
 
+app.get("/:type(test|package|panel)/:id", (req, res) => {
+  const { type, id } = req.params;
+  res.send(`
+<html>
+<head>
+<title>Yoda Deep Link</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+          body { font-family: sans-serif; padding: 20px; }
+          .card { border: 1px solid #ddd; padding: 20px; border-radius: 8px; }
+          a { display: inline-block; margin-top: 12px; padding: 10px 15px; background: #0070f3; color: #fff; text-decoration: none; border-radius: 6px; }
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Deep Link Redirect</h2>
+<p>Type: <b>${type}</b></p>
+<p>ID: <b>${id}</b></p>
+<a href="myapp://deeplink/${type}/${id}">Open in App</a>
+</div>
+</body>
+</html>
+  `);
+}); 
+
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
