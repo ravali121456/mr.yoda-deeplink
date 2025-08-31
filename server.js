@@ -21,24 +21,47 @@ app.get('/test/:id', (req, res) => {
   const deepLink = `${CUSTOM_SCHEME}${testId}`;
   // const fallback = isIOS ? IOS_APP_STORE_URL : isAndroid ? ANDROID_APP_STORE_URL : 'https://mryoda.yodaprojects.com/';
   const fallback = isIOS ? IOS_APP_STORE_URL : ANDROID_APP_STORE_URL;
-  const html = `
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Opening App...</title>
-      <meta charset="UTF-8" />
-      <script>
-        setTimeout(function () {
-          window.location.href = '${fallback}';
-        }, 2000);
-        window.location = '${deepLink}';
-      </script>
-    </head>
-    <body>
-      <p>Redirecting to app...</p>
-    </body>
-    </html>
+if (isAndroid) {
+  // Use Android intent (shows popup if app is installed)
+html = `
+<!DOCTYPE html>
+<html>
+<head>
+<title>Opening App...</title>
+<meta charset="UTF-8" />
+</head>
+<body>
+<p>Redirecting to app...</p>
+<script>
+      window.location = 'intent://test/${testId}#Intent;scheme=mr-yoda-deeplink;package=com.mryoda;S.browser_fallback_url=${encodeURIComponent(ANDROID_APP_STORE_URL)};end';
+</script>
+</body>
+</html>
   `;
+} else if (isIOS) {
+  // For iOS, still use universal link OR fallback
+  html = `
+<!DOCTYPE html>
+<html>
+<head>
+<title>Opening App...</title>
+<meta charset="UTF-8" />
+<script>
+      window.location = '${CUSTOM_SCHEME}${testId}';
+      setTimeout(function () {
+        window.location = '${IOS_APP_STORE_URL}';
+      }, 2000);
+</script>
+</head>
+<body>
+<p>Redirecting to app...</p>
+</body>
+</html>
+  `;
+} else {
+  // Fallback for web/desktop
+  html = `<a href="${ANDROID_APP_STORE_URL}">Open in Play Store</a>`;
+}
 
   res.send(html);
 });
