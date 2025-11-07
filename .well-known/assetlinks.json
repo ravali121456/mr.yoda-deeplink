@@ -5,7 +5,8 @@
       "namespace": "android_app",
       "package_name": "com.mryoda",
       "sha256_cert_fingerprints": [
-        "92:33:BD:12:88:16:FC:B6:0F:58:7C:E9:85:D9:43:4B:D6:13:30:B6:51:35:8A:F7:12:75:B0:D5:82:4B:E2:94"
+      "92:33:BD:12:88:16:FC:B6:0F:58:7C:E9:85:D9:43:4B:D6:13:30:B6:51:35:8A:F7:12:75:B0:D5:82:4B:E2:94",
+      "26:17:13:B1:15:8A:D6:1D:B1:B6:48:FD:CE:46:6B:A2:CD:EF:B6:0F:AC:4A:45:B9:68:5C:91:BF:9B:8A:8E:D9"
       ]
     }
   }
